@@ -41,7 +41,7 @@ function Home() {
 
 const Router = () => {
 
-  const user = true
+  const user = false
 
   return (
   
@@ -71,7 +71,9 @@ const Router = () => {
       ),}}/>
     </Tab.Navigator>
     :
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerStyle: {
+      backgroundColor: '#86ecec',
+    },}}>
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />

@@ -5,7 +5,7 @@ import Card from "../components/card";
 
 export const Dashboard = ({navigation}) => {
 
-  const user = true
+  const user = false
 
   const { loading, err, data } = useBlogCalls();
   renderItem = ({ item }) => <Card blog={item} navigation={navigation} />;

@@ -1,12 +1,28 @@
-import React from 'react'
-import { Button, Text, View } from 'react-native'
+import React from "react";
+import {  StyleSheet, Text, View } from "react-native";
+import LoginForm from "../components/auth/loginForm";
 
-
-export const Login = ({navigation}) => {
+export const Login = ({ navigation }) => {
   return (
-    <View>
-<Text> Login </Text>
-<Button title="Sign In" onPress={()=>navigation.navigate("Register")}/>
+    <View style={styles.container}>
+      <LoginForm />
+      <Text style={styles.text}>Don't you have an account? <Text style={styles.inlineText} onPress={()=>navigation.navigate("Register")}>Sign Up</Text></Text>
     </View>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    justifyContent: "center",
+  },
+  text:{
+    alignSelf:"center",
+    margin:10,
+    fontSize:20
+  },
+  inlineText:{
+    color:"red"
+  }
+});
