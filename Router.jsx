@@ -13,6 +13,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { Entypo } from '@expo/vector-icons';
 import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
+import useAuthCalls from './hooks/useAuthCalls';
 
 
 const Drawer = createDrawerNavigator();
@@ -20,10 +21,12 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator()
 
 function Me() {
+
+  const { logout } = useAuthCalls();
   return (
     <Drawer.Navigator screenOptions={{headerStyle: {
       backgroundColor: '#86ecec',
-    },headerRight:()=> <Text style={{padding:5}} onPress={()=>console.log("logout")}>Sign Out</Text>}}>
+    },headerRight:()=> <Text style={{padding:5}} onPress={()=>logout()}>Sign Out</Text>}}>
       <Drawer.Screen name="My Blogs" component={MyBlogs} />
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>

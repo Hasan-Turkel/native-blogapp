@@ -1,10 +1,12 @@
 import  axios  from 'axios'
 import { useEffect, useState } from 'react'
 import useAxios from "./useAxios"
+import { useSelector } from 'react-redux'
 
 const useBlogCalls = (navigation) => {
 const { axiosWithToken } = useAxios()
 const BASE_URL = "https://blogapp-fs-backend.vercel.app" 
+const { user } = useSelector((state) => state.auth)
 
 const [loading, setLoading] = useState(true)
 const [err, setErr] = useState()
@@ -15,7 +17,7 @@ const getData = async () => {
     try {
         const {data} = await axios(`${BASE_URL}/api/blogs`)
         setData(data)
-        console.log(data);
+        // console.log(data);
 
     } catch (error) { setErr(error)
         
@@ -29,9 +31,9 @@ const sendBlog = async (values) => {
       );
      
       navigation.navigate("Me")
-      console.log(data);
+      // console.log(data);
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       
     }
   };
@@ -47,9 +49,17 @@ const sendBlog = async (values) => {
       // console.log(error);
     }
   };
+  const getMyBlogs = async () => {
+    try {
+      const { data } = await axiosWithToken(`/api/blogs?author=${user.id}`);
+      setData(data);
+      // console.log(data);
+    } catch (error) {
+      // console.log(error);
+    }
+  };
 
-
-  return {loading, err, data, getData, sendBlog, getCat}
+  return {loading, err, data, getData, sendBlog, getCat, getMyBlogs}
 
 }
 

@@ -1,11 +1,42 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import  { useCallback } from "react";
+import {  FlatList, StyleSheet, View } from "react-native";
+import useBlogCalls from "../hooks/useBlogCalls";
+import Card from "../components/card";
+import { useFocusEffect } from '@react-navigation/native';
+
+export const MyBlogs = ({navigation}) => {
 
 
-export const MyBlogs = () => {
+  const { loading, err, data:blogs, getMyBlogs } = useBlogCalls();
+  renderItem = ({ item }) => <Card blog={item} navigation={navigation} />;
+
+  useFocusEffect(
+        useCallback(() => {
+          // Do something when the screen is focused
+          getMyBlogs()
+          
+        }, [])
+      );
+  
+// console.log(blogs);
   return (
-    <View>
-<Text> MyBlogs </Text>
+    <View style={styles.container}>
+      <FlatList
+        style={styles.list}
+        data={blogs}
+        renderItem={renderItem}
+      />
+      
     </View>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding:10
+  },
+  list: {
+    flex: 1,
+  },
+});
