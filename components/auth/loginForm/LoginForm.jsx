@@ -3,10 +3,10 @@ import { Formik } from "formik";
 import { object, string } from "yup";
 import { Button, Text, TextInput, View } from "react-native";
 import styles from "./LoginForm.style";
-// import useAuthCalls from "../../hooks/useAuthCalls";
+import useAuthCalls from "../../../hooks/useAuthCalls";
 
-const LoginForm = () => {
-//   const { login } = useAuthCalls();
+const LoginForm = ({navigation}) => {
+  const { login } = useAuthCalls(navigation);
 
   const loginSchema = object({
     email: string().email().required("Email is required"),
@@ -26,7 +26,7 @@ const LoginForm = () => {
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
         onSubmit={(values, action) => {
-        console.log(values);
+        login(values);
           action.resetForm();
           action.setSubmitting(false);
         }}
@@ -46,7 +46,6 @@ const LoginForm = () => {
               Email address*
             </Text>
             <TextInput style={styles.input}
-              className="form-control"
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
@@ -66,7 +65,7 @@ const LoginForm = () => {
             <Button
               disabled={isSubmitting}
               onPress={handleSubmit} title="Login"
-              Login
+              
             />
           </View>
         )}

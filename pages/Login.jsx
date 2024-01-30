@@ -5,7 +5,7 @@ import LoginForm from "../components/auth/loginForm";
 export const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <LoginForm />
+      <LoginForm navigation = {navigation}/>
       <Text style={styles.text}>Don't you have an account? <Text style={styles.inlineText} onPress={()=>navigation.navigate("Register")}>Sign Up</Text></Text>
     </View>
   );
