@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Dashboard } from './pages/Dashboard';
 import { Profile } from './pages/Profile';
 import { MyBlogs } from './pages/MyBlogs';
-import { NewBlog } from './pages/NewBlog';
+import  NewBlog  from './pages/NewBlog';
 import { About } from './pages/About';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -12,6 +12,7 @@ import { Detail } from './pages/Detail';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Entypo } from '@expo/vector-icons';
 import { Text } from 'react-native';
+import { useSelector } from 'react-redux';
 
 
 const Drawer = createDrawerNavigator();
@@ -41,7 +42,7 @@ function Home() {
 
 const Router = () => {
 
-  const user = false
+  const { user } = useSelector((state) => state.auth)
 
   return (
   
