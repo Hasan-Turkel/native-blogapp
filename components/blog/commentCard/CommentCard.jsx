@@ -37,7 +37,7 @@ const CommentCard = ({ id, getDetailCard }) => {
             <TextInput
               style={styles.input}
               multiline={true}
-              numberOfLines={2}
+              numberOfLines={5}
               onChangeText={handleChange("content")}
               onBlur={handleBlur("content")}
               value={values.content}

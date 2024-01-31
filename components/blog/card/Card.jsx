@@ -7,17 +7,9 @@ import styles from "./Card.style";
 import { useSelector } from "react-redux";
 import useBlogCalls from "../../../hooks/useBlogCalls";
 
-const Card = ({ blog, navigation, dataFunc }) => {
+const Card = ({ blog, navigation }) => {
   const { user } = useSelector((state) => state.auth);
-  const { likeUnlike } = useBlogCalls();
-  const handleClick=()=>{
-    likeUnlike(blog.id)
-    setTimeout(() => {
-
-     dataFunc()
-
-  }, 1000);
-}
+  
 const like = blog?.likes_n?.filter((item) => item.user_id == user?._id).length ? "red":"black";
   return (
    
@@ -36,7 +28,7 @@ const like = blog?.likes_n?.filter((item) => item.user_id == user?._id).length ?
         <Text >{blog?.author}</Text>
         </View>
         <View style={styles.reactionContainer}>
-        <Ionicons name="heart" size={24} color={like} onPress={handleClick}/>
+        <Ionicons name="heart" size={24} color={like}/>
         <Text >{blog?.likes}</Text>
         <Octicons name="comment" size={24} color="black" />
         <Text >{blog?.comment_count}</Text>

@@ -11,4 +11,9 @@ export default styles = StyleSheet.create({
     text: {
       fontWeight: "bold",
     },
+    container:{
+     backgroundColor: "rgba(256, 256, 256, 0.9)",
+      padding:10,
+      borderRadius:10
+    }
   });

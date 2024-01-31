@@ -10,7 +10,7 @@ export const Dashboard = ({navigation}) => {
   const { user } = useSelector((state) => state.auth)
 
   const { loading, err, data:blogs, getData } = useBlogCalls();
-  renderItem = ({ item }) => <Card blog={item} navigation={navigation} dataFunc={getData} />;
+  renderItem = ({ item }) => <Card blog={item} navigation={navigation}  />;
 
   useFocusEffect(
         useCallback(() => {

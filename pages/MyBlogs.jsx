@@ -8,7 +8,7 @@ export const MyBlogs = ({navigation}) => {
 
 
   const { loading, err, data:blogs, getMyBlogs } = useBlogCalls();
-  renderItem = ({ item }) => <Card blog={item} navigation={navigation} dataFunc={getMyBlogs} />;
+  renderItem = ({ item }) => <Card blog={item} navigation={navigation} />;
 
   useFocusEffect(
         useCallback(() => {
