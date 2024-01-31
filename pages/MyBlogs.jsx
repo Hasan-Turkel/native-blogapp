@@ -1,14 +1,14 @@
 import  { useCallback } from "react";
 import {  FlatList, StyleSheet, View } from "react-native";
 import useBlogCalls from "../hooks/useBlogCalls";
-import Card from "../components/card";
+import Card from "../components/blog/card";
 import { useFocusEffect } from '@react-navigation/native';
 
 export const MyBlogs = ({navigation}) => {
 
 
   const { loading, err, data:blogs, getMyBlogs } = useBlogCalls();
-  renderItem = ({ item }) => <Card blog={item} navigation={navigation} />;
+  renderItem = ({ item }) => <Card blog={item} navigation={navigation} dataFunc={getMyBlogs} />;
 
   useFocusEffect(
         useCallback(() => {

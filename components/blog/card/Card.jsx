@@ -4,9 +4,21 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { Octicons } from '@expo/vector-icons';
 
 import styles from "./Card.style";
+import { useSelector } from "react-redux";
+import useBlogCalls from "../../../hooks/useBlogCalls";
 
-const Card = ({ blog, navigation }) => {
- const user = true
+const Card = ({ blog, navigation, dataFunc }) => {
+  const { user } = useSelector((state) => state.auth);
+  const { likeUnlike } = useBlogCalls();
+  const handleClick=()=>{
+    likeUnlike(blog.id)
+    setTimeout(() => {
+
+     dataFunc()
+
+  }, 1000);
+}
+const like = blog?.likes_n?.filter((item) => item.user_id == user?._id).length ? "red":"black";
   return (
    
       <View style={styles.container}>
@@ -24,7 +36,7 @@ const Card = ({ blog, navigation }) => {
         <Text >{blog?.author}</Text>
         </View>
         <View style={styles.reactionContainer}>
-        <Ionicons name="heart" size={24} color="black" />
+        <Ionicons name="heart" size={24} color={like} onPress={handleClick}/>
         <Text >{blog?.likes}</Text>
         <Octicons name="comment" size={24} color="black" />
         <Text >{blog?.comment_count}</Text>
@@ -32,7 +44,7 @@ const Card = ({ blog, navigation }) => {
         <Text >{blog?.post_views}</Text>
         </View>
         {user &&  <Button
-  onPress={()=>navigation.navigate("Detail")}
+  onPress={()=>navigation.navigate("Detail", {id:blog.id})}
   title="Read More"
 />}
        

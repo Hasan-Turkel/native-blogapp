@@ -8,12 +8,13 @@ import  NewBlog  from './pages/NewBlog';
 import { About } from './pages/About';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
-import { Detail } from './pages/Detail';
+
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Entypo } from '@expo/vector-icons';
 import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import useAuthCalls from './hooks/useAuthCalls';
+import Detail from './pages/detail';
 
 
 const Drawer = createDrawerNavigator();

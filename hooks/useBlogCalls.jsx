@@ -58,8 +58,42 @@ const sendBlog = async (values) => {
       // console.log(error);
     }
   };
+  const sendComment = async (values, id) => {
 
-  return {loading, err, data, getData, sendBlog, getCat, getMyBlogs}
+    try {
+      const { data } = await axiosWithToken.post(`/api/comments/${id}/`, values 
+     );
+      
+      // console.log(data);
+    } catch (error) {
+      // console.log(values, id);
+     
+    }
+  };
+  const getDetailCard = async (id) => {
+    try {
+      const { data } = await axiosWithToken(`/api/blogs/${id}/`, 
+      );
+      setData(data);
+      // console.log(data.id);
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+  const likeUnlike = async (id) => {
+    try {
+        const { data } = await axiosWithToken.post(`/api/likes/${id}/`,1,
+        );
+      // console.log(data);
+      // console.log(id);
+    } catch (error) {
+      // console.log(error.message);
+      // console.log(id);
+      // console.log(token);
+    }
+  };
+
+  return {loading, err, data, getData, sendBlog, getCat, getMyBlogs, sendComment, getDetailCard, likeUnlike }
 
 }
 

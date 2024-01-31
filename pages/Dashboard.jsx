@@ -1,7 +1,7 @@
 import  { useCallback } from "react";
 import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 import useBlogCalls from "../hooks/useBlogCalls";
-import Card from "../components/card";
+import Card from "../components/blog/card";
 import { useSelector } from "react-redux";
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -10,7 +10,7 @@ export const Dashboard = ({navigation}) => {
   const { user } = useSelector((state) => state.auth)
 
   const { loading, err, data:blogs, getData } = useBlogCalls();
-  renderItem = ({ item }) => <Card blog={item} navigation={navigation} />;
+  renderItem = ({ item }) => <Card blog={item} navigation={navigation} dataFunc={getData} />;
 
   useFocusEffect(
         useCallback(() => {
