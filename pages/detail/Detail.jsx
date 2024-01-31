@@ -8,11 +8,13 @@ import styles from "./Detail.style";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Octicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
+import DeleteCard from "../../components/blog/deleteCard";
 // import DeleteModal from "../components/blog/DeleteModal";
 // import UpdateModal from "../components/blog/UpdateModal";
 
-const Detail = ({ route }) => {
+const Detail = ({ route, navigation }) => {
   const [commentModal, setCommentModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
   const { loading, err, data, getDetailCard, likeUnlike } = useBlogCalls();
@@ -75,7 +77,7 @@ const Detail = ({ route }) => {
         <View style={styles.buttonContainer}>
           <Button onPress={null} title="Update" />
 
-          <Button onPress={null} title="Delete" color="red" />
+          <Button onPress={()=>setDeleteModal(true)} title="Delete" color="red" />
         </View>
       )}
 
@@ -87,6 +89,9 @@ const Detail = ({ route }) => {
 
       <Modal isVisible={commentModal}  onBackdropPress={() => setCommentModal(false)}>
       <CommentCard id={data.id} getDetailCard={getDetailCard} />
+      </Modal>
+      <Modal isVisible={deleteModal}  onBackdropPress={() => setDeleteModal(false)}>
+      <DeleteCard id={route.params.id} navigation={navigation} setDeleteModal={setDeleteModal}/>
       </Modal>
 
       

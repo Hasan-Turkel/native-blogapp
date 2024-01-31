@@ -93,7 +93,25 @@ const sendBlog = async (values) => {
     }
   };
 
-  return {loading, err, data, getData, sendBlog, getCat, getMyBlogs, sendComment, getDetailCard, likeUnlike }
+  const delBlog = async (id) => {
+   
+    try {
+        const { data } = await axiosWithToken.delete(`/api/blogs/${id}/`,
+    );
+      
+      navigation.goBack()
+      // console.log(data);
+      // console.log(id);
+      
+    } catch (error) {
+      // console.log(error.message);
+      // console.log(id);
+    
+    
+    }
+  };
+
+  return {loading, err, data, getData, sendBlog, getCat, getMyBlogs, sendComment, getDetailCard, likeUnlike, delBlog }
 
 }
 

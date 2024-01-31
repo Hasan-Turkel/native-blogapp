@@ -6,7 +6,8 @@ import SelectDropdown from "react-native-select-dropdown";
 import { useFocusEffect } from '@react-navigation/native';
 
 const NewBlog = ({ navigation }) => {
-  const dropdownRef = useRef({}); 
+  const categoryRef = useRef({}); 
+  const statusRef = useRef({}); 
   const { sendBlog, data: cat, getCat } = useBlogCalls(navigation);
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
@@ -36,7 +37,8 @@ const NewBlog = ({ navigation }) => {
           });
           action.resetForm();
           action.setSubmitting(false);
-          dropdownRef.current.reset()
+          categoryRef.current.reset()
+          statusRef.current.reset()
           // console.log(values);
         }}
       >
@@ -88,7 +90,7 @@ const NewBlog = ({ navigation }) => {
             <Text style={styles.text}>
               Categories* (Please choose by clicking.)
             </Text>
-            <SelectDropdown buttonStyle={styles.option} ref={dropdownRef}  
+            <SelectDropdown buttonStyle={styles.option} ref={categoryRef}  
               data={cat}
               onSelect={(selectedItem, index) => {
                 setCategory(selectedItem);
@@ -107,7 +109,7 @@ const NewBlog = ({ navigation }) => {
             <Text style={styles.text}>
               Status* (Please choose by clicking.)
             </Text>
-            <SelectDropdown buttonStyle={styles.option} ref={dropdownRef} 
+            <SelectDropdown buttonStyle={styles.option} ref={statusRef} 
               data={statuses}
               onSelect={(selectedItem, index) => {
                 setStatus(selectedItem);
