@@ -110,8 +110,22 @@ const sendBlog = async (values) => {
     
     }
   };
+  const updateBlog = async (values) => {
+   
+    try {
+        const { data } = await axiosWithToken.put(`/api/blogs/${values.id}/`,values,
+        );
+     
+      // console.log(data);
+      // console.log(id);
+      
+    } catch (error) {
+      // console.log(error.message);
+      // console.log(id);
+    }
+  };
 
-  return {loading, err, data, getData, sendBlog, getCat, getMyBlogs, sendComment, getDetailCard, likeUnlike, delBlog }
+  return {loading, err, data, getData, sendBlog, getCat, getMyBlogs, sendComment, getDetailCard, likeUnlike, delBlog, updateBlog }
 
 }
 

@@ -3,7 +3,7 @@ import useBlogCalls from "../../../hooks/useBlogCalls";
 import { Button, Text, TextInput, View } from "react-native";
 import styles from "./CommentCard.style";
 
-const CommentCard = ({ id, getDetailCard }) => {
+const CommentCard = ({ id, getDetailCard, setCommentModal }) => {
   const { sendComment } = useBlogCalls();
 
   return (
@@ -14,6 +14,7 @@ const CommentCard = ({ id, getDetailCard }) => {
         }}
         onSubmit={(values, action) => {
           sendComment({ ...values, post: id }, id);
+          setCommentModal(false)
           action.resetForm();
           action.setSubmitting(false);
           setTimeout(() => {

@@ -9,12 +9,13 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Octicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import DeleteCard from "../../components/blog/deleteCard";
-// import DeleteModal from "../components/blog/DeleteModal";
-// import UpdateModal from "../components/blog/UpdateModal";
+import UpdateCard from "../../components/blog/updateCard";
+
 
 const Detail = ({ route, navigation }) => {
   const [commentModal, setCommentModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [updateModal, setUpdateModal] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
   const { loading, err, data, getDetailCard, likeUnlike } = useBlogCalls();
@@ -75,7 +76,7 @@ const Detail = ({ route, navigation }) => {
 
       {user?.username == data?.author && (
         <View style={styles.buttonContainer}>
-          <Button onPress={null} title="Update" />
+          <Button onPress={()=>setUpdateModal(true)} title="Update" />
 
           <Button onPress={()=>setDeleteModal(true)} title="Delete" color="red" />
         </View>
@@ -88,10 +89,13 @@ const Detail = ({ route, navigation }) => {
       <Button onPress={()=>setCommentModal(true)} title="Add a new comment" color="green" />
 
       <Modal isVisible={commentModal}  onBackdropPress={() => setCommentModal(false)}>
-      <CommentCard id={data.id} getDetailCard={getDetailCard} />
+      <CommentCard id={data.id} getDetailCard={getDetailCard} setCommentModal={setCommentModal} />
       </Modal>
       <Modal isVisible={deleteModal}  onBackdropPress={() => setDeleteModal(false)}>
       <DeleteCard id={route.params.id} navigation={navigation} setDeleteModal={setDeleteModal}/>
+      </Modal>
+      <Modal isVisible={updateModal}  onBackdropPress={() => setUpdateModal(false)}>
+      <UpdateCard data={data} setUpdateModal={setUpdateModal}  getDetailCard={getDetailCard}/>
       </Modal>
 
       

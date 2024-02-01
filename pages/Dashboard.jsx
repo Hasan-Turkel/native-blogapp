@@ -28,7 +28,7 @@ export const Dashboard = ({navigation}) => {
         data={blogs}
         renderItem={renderItem}
       />
-      {!user && <Button title="Sign Up" color="#86ecec" onPress={()=>navigation.navigate("Login")}/>}
+      {!user && <Button title="Sign In" color="#86ecec" onPress={()=>navigation.navigate("Login")}/>}
       
     </View>
   );
