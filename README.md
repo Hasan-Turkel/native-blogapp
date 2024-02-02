@@ -5,9 +5,35 @@ To see web repo you can visit [blogapp-fs-frontend repo.](https://github.com/Has
 
 ## This is how the site looks like.
 
-![./home.jpg](./home.jpg)
-![./dashboard.jpg](./dashboard.jpg)
-![./detail.jpg](./detail.jpg)
-![./detail1.jpg](./detail1.jpg)
-![./newblog.jpg](./newblog.jpg)
-![./myblogs.jpg](./myblogs.jpg)
+<img
+        src="./home.jpg"
+        alt="home"
+        width ="200px"
+      />
+<img
+        src="./dashboard.jpg"
+        alt="home"
+        width ="200px"
+      />
+<img
+        src="./detail.jpg"
+        alt="home"
+        width ="200px"
+      />
+<img
+        src="./detail1.jpg"
+        alt="home"
+        width ="200px"
+      />
+<img
+        src="./newblog.jpg"
+        alt="home"
+        width ="200px"
+      />
+<img
+        src="./myblogs.jpg"
+        alt="home"
+        width ="200px"
+      />
+      
+
